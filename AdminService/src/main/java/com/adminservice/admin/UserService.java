@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.adminservice.security.MyUserDetails;
 
 
+
+
 @Service
 public class UserService implements UserDetailsService {
 	
@@ -40,14 +42,20 @@ public class UserService implements UserDetailsService {
 		
 		
 	}
-
+	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws 
+	      UsernameNotFoundException {
 		
-			
-			User user =userRepo.getUsersByUsername(username);
-			return new MyUserDetails(user);
+		User user =  userRepo.getUsersByUsername(username);
+		System.out.println(" ");
+		System.out.println("--------Inside App User Service IMP ---------- ");
+		System.out.println(" Arg :- "+username);
+		System.out.println(" From Database "+user);
 		
+		return new MyUserDetails(user);
+		
+
 	}
 
 }

@@ -17,7 +17,7 @@ import com.adminservice.dto.JWTResponseDTO;
 import com.adminservice.security.JWTUtil;
 import com.adminservice.admin.User;
 
-//hello
+
 @RestController
 @RequestMapping("/public")
 public class PublicController {
