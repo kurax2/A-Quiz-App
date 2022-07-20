@@ -19,7 +19,7 @@ import com.adminservice.admin.User;
 
 
 @RestController
-@RequestMapping("/public")
+@RequestMapping("/api/public")
 public class PublicController {
 
 	@Autowired
@@ -31,6 +31,7 @@ public class PublicController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+	//--------------------------------------------------------------------------------LOGIN----------------------------------------------------------------------------------------------------
 	@PostMapping("/api/login")
 	public ResponseEntity<JWTResponseDTO> doLogin(@RequestBody AppUserRequestDTO userEntry)throws Exception
 	{
@@ -56,7 +57,8 @@ public class PublicController {
 		return new ResponseEntity<JWTResponseDTO>(jwtResponseDTO, HttpStatus.OK);
 	}
 	
-	@PostMapping("/register")
+	//--------------------------------------------------------------------------------REGISTER----------------------------------------------------------------------------------------------------
+	@PostMapping("/api/register")
 	public ResponseEntity<User> adduser(@RequestBody User a){
 		User registeredUser= appUserService.addUser(a);
 		return new ResponseEntity<User>(registeredUser, HttpStatus.OK);

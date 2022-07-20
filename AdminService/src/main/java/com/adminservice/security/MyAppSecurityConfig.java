@@ -44,9 +44,8 @@ public class MyAppSecurityConfig extends WebSecurityConfigurerAdapter{
 		 	csrf().disable().cors().disable().
 			authorizeRequests().
 
-			antMatchers("/public/**").permitAll().
+			antMatchers("/api/public/**").permitAll().
 			antMatchers("/api/admin/**").hasAuthority("admin").
-			antMatchers("/student/**").hasAnyAuthority("admin","student").
 			
 			anyRequest().authenticated().and().
 			sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

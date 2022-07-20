@@ -43,42 +43,46 @@ public class UserRestController {
 	public UserRestController() {
 		System.out.println("User Controller constructor called");
 	}
-	
-	//USER c
-	@PostMapping("/user/add")
-	public ResponseEntity<User> addUser(@RequestBody @Valid User u)
-	{
 		
-		User savedUser = userService.addUser(u);
+		//--------------------------------------------------------------------------------USER----------------------------------------------------------------------------------------------------
 		
-		return new ResponseEntity<User>(savedUser,HttpStatus.OK);
+		//USER c
+		@PostMapping("/user/add")
+		public ResponseEntity<User> addUser(@RequestBody @Valid User u)
+		{
+			
+			User savedUser = userService.addUser(u);
+			
+			return new ResponseEntity<User>(savedUser,HttpStatus.OK);
+			
+		}
+		//USER r
+		@GetMapping("/user/all")
+		public List<User> getAllUsers()
+		{
+			return userService.getAllUsers();
+		}
 		
-	}
-	//USER r
-	@GetMapping("/user/all")
-	public List<User> getAllUsers()
-	{
-		return userService.getAllUsers();
-	}
-	
-	//USER u
-	@PutMapping("/user/update")
-	public ResponseEntity<User> updateProject(@RequestBody User u)
-	{
-		User updateUser = userService.updateUsers(u);
-		return new ResponseEntity<>(updateUser,HttpStatus.OK);
-	}
-	
-	
-	//USER d
-	@DeleteMapping("/user/delete/{userId}")
-	public void deleteUser(@PathVariable int userId)
-	{
-		userService.deleteUserByID(userId);
+		//USER u
+		@PutMapping("/user/update")
+		public ResponseEntity<User> updateProject(@RequestBody User u)
+		{
+			User updateUser = userService.updateUsers(u);
+			return new ResponseEntity<>(updateUser,HttpStatus.OK);
+		}
 		
-	}
-	
-	//QUESTION c
+		
+		//USER d
+		@DeleteMapping("/user/delete/{userId}")
+		public void deleteUser(@PathVariable int userId)
+		{
+			userService.deleteUserByID(userId);
+			
+		}
+		
+		//--------------------------------------------------------------------------------QUESTION----------------------------------------------------------------------------------------------------
+		
+		//QUESTION c
 		@PostMapping("/question/add")
 		public ResponseEntity<Question> addQuestion(@RequestBody @Valid Question u)
 		{
@@ -112,27 +116,29 @@ public class UserRestController {
 			
 		}
 		
-		//Result c
+		////--------------------------------------------------------------------------------RESULT----------------------------------------------------------------------------------------------------
+		
+		//RESULT c
 		@PostMapping("/result/add")
 		public Result addResult(@RequestBody @Valid Result r) {
 			return resultService.addResult(r);
 		}
 		
-		//Result r
+		//RESULT r
 		@GetMapping("/result/all")
 		public List<Result> getAllResult(){
 			
 			return resultService.getAllResult();
 		}
 		
-		//Result u
+		//RESULT u
 		@PutMapping("/result/update")
 		public Result updateResult(@RequestBody Result r) {
 			
 			return resultService.updateResult(r);
 		}
 		
-		//Result d
+		//RESULT d
 		@DeleteMapping("/result/delete/{resultId}")
 		public void deleteResult(@PathVariable int resultId){
 			resultService.deleteResultById(resultId);
