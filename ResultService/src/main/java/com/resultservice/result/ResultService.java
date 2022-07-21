@@ -37,4 +37,18 @@ public class ResultService {
 		return resultRepo.getById(resultId);
 	}
 
+	public List<Result> getResultByCat(String category) {
+		
+		return resultRepo.getResultByCat(category);
+	}
+
+	public List<Result> getAllQuestionsByStudentID(String id) {
+		
+		return resultRepo.getAllQuestionsByStudentID(id);
+	}
+	
+	
+
+	
+
 }

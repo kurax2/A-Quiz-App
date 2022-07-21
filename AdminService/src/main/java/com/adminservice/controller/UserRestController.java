@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.adminservice.admin.User;
 import com.adminservice.admin.UserService;
@@ -39,6 +40,9 @@ public class UserRestController {
 	
 	@Autowired
 	ResultService resultService;
+	
+	@Autowired
+	RestTemplate restTemplate;
 
 	public UserRestController() {
 		System.out.println("User Controller constructor called");
@@ -96,7 +100,8 @@ public class UserRestController {
 		@GetMapping("/question/all")
 		public List<Question> getAllQuestions()
 		{
-			return questionService.getAllQuestions();
+			List<Question> q = restTemplate.getForObject("http://QUESTION-SERVICE/api/question/all/",List.class);
+			return q;
 		}
 		
 		//QUESTION u
@@ -121,14 +126,16 @@ public class UserRestController {
 		//RESULT c
 		@PostMapping("/result/add")
 		public Result addResult(@RequestBody @Valid Result r) {
-			return resultService.addResult(r);
+			Result q = restTemplate.postForObject("http://RESULT-SERVICE/api/result/add", r,Result.class);
+			return q;
 		}
 		
 		//RESULT r
 		@GetMapping("/result/all")
 		public List<Result> getAllResult(){
 			
-			return resultService.getAllResult();
+			List<Result> r = restTemplate.getForObject("http://RESULT-SERVICE/api/result/all", List.class);
+			return r;
 		}
 		
 		//RESULT u
