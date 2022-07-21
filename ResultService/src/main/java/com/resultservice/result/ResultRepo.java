@@ -6,12 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ResultRepo extends JpaRepository<Result,Integer>{
+public interface ResultRepo extends JpaRepository<Result,Integer>, CustomResultRepo{
 
-	List<Result> getResultByCategory(String category);
-
-	List<Result> getAllResultsByUserID(String id);
-
-	void deleteResultByUserID(int userId);
+	
 
 }

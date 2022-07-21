@@ -14,7 +14,6 @@ public class CustomQuestionRepoImpl implements CustomQuestionRepo {
 	EntityManager springDataJPA;
 	
 	
-	
 	@Override
 	public List<Question> getQuestionByCat(String category) {
 		String query = "from Question q where q.category=:category";

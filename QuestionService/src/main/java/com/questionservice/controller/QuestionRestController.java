@@ -21,7 +21,7 @@ import com.questionservice.question.Question;
 import com.questionservice.question.QuestionService;
 
 @RestController
-@RequestMapping("/api/question")
+@RequestMapping("/abc-university/question")
 @Validated
 public class QuestionRestController {
 	

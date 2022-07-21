@@ -21,7 +21,7 @@ import com.studentservice.result.Result;
 import com.studentservice.result.ResultService;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/abc-university/student")
 @Validated
 public class StudentRestController {
 	
@@ -41,33 +41,37 @@ public class StudentRestController {
 		
 		System.out.println("Student Controller constructor called");
 	}
+	//--------------------------------------------------------------------------------QUESTION----------------------------------------------------------------------------------------------------
 	
-	//Question R
+	//Get All
 	@GetMapping("/question/all")
 	public List<Question> getAllQuestion(){
-		List<Question> q = restTemplate.getForObject("http://QUESTION-SERVICE/api/question/all/",List.class);
+		List<Question> q = restTemplate.getForObject("http://QUESTION-SERVICE/abc-university/question/all/",List.class);
 		return q;
 			
 	}
 	
+	//Get All by Category
 	@GetMapping("/question/all/{category}")
 	public List<Question> getAllQuestionByCat(@PathVariable String category){
-		List<Question> q = restTemplate.getForObject("http://QUESTION-SERVICE/api/question/all/cat/"+category,List.class);
+		List<Question> q = restTemplate.getForObject("http://QUESTION-SERVICE/abc-university/question/all/cat/"+category,List.class);
 		return q;
 	}
 	
-	//Result C
+	//--------------------------------------------------------------------------------RESULT----------------------------------------------------------------------------------------------------
+	
+	//Add
 	@PostMapping("/result/add")
 	public Result addResult(@RequestBody @Valid Result r) {
-		Result q = restTemplate.postForObject("http://RESULT-SERVICE/api/result/add", r,Result.class);
+		Result q = restTemplate.postForObject("http://RESULT-SERVICE/abc-university/result/add", r,Result.class);
 		return q;
 	}
 	
-	//Result R
+	//Get All
 	@GetMapping("/result/all")
 	public List<Result> getAllResult(){
 		
-		List<Result> r = restTemplate.getForObject("http://RESULT-SERVICE/api/result/all", List.class);
+		List<Result> r = restTemplate.getForObject("http://RESULT-SERVICE/abc-university/result/all", List.class);
 		return r;
 	}
 

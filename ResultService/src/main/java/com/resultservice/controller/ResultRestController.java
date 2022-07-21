@@ -22,7 +22,7 @@ import com.resultservice.result.Result;
 import com.resultservice.result.ResultService;
 
 @RestController
-@RequestMapping("/api/result")
+@RequestMapping("/abc-university/result")
 @Validated
 public class ResultRestController {
 	
@@ -62,11 +62,5 @@ public class ResultRestController {
 		return resultService.addResult(r);
 	}
 	
-	//USER d
-	@DeleteMapping("/user/delete/{userId}")
-	public void deleteResultByUserID(@PathVariable int userId)
-	{
-		resultService.deleteResultByUserID(userId);
-				
-	}
+	
 }

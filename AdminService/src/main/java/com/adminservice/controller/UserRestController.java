@@ -1,11 +1,16 @@
 package com.adminservice.controller;
 
+import java.net.http.HttpHeaders;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,10 +30,8 @@ import com.adminservice.question.QuestionService;
 import com.adminservice.result.ResultService;
 import com.adminservice.result.Result;
 
-
-
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/abc-university/admin")
 @Validated
 public class UserRestController {
 	
@@ -47,10 +50,26 @@ public class UserRestController {
 	public UserRestController() {
 		System.out.println("User Controller constructor called");
 	}
+	
+	public boolean validatToken(HttpServletRequest request) {
+		
+		org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+		
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.set("Authorization", "ncs-"+request.getHeader("Authorization"));
+		headers.set("userAuth","admin");
+
+		HttpEntity<String> entity = new HttpEntity<String>(headers);
+		
+		RestTemplate r =new RestTemplate();
+		ResponseEntity<Boolean> tokenTrue=r.exchange("http://localhost:8081/abc-university/public/validate", HttpMethod();
+	
+		return tokenTrue.getBody().booleanValue();
+	}
 		
 		//--------------------------------------------------------------------------------USER----------------------------------------------------------------------------------------------------
 		
-		//USER c
+		//Add
 		@PostMapping("/user/add")
 		public ResponseEntity<User> addUser(@RequestBody @Valid User u)
 		{
@@ -60,14 +79,14 @@ public class UserRestController {
 			return new ResponseEntity<User>(savedUser,HttpStatus.OK);
 			
 		}
-		//USER r
+		//Get All
 		@GetMapping("/user/all")
 		public List<User> getAllUsers()
 		{
 			return userService.getAllUsers();
 		}
 		
-		//USER u
+		//Update
 		@PutMapping("/user/update")
 		public ResponseEntity<User> updateProject(@RequestBody User u)
 		{
@@ -76,7 +95,7 @@ public class UserRestController {
 		}
 		
 		
-		//USER d
+		//Delete
 		@DeleteMapping("/user/delete/{userId}")
 		public void deleteUser(@PathVariable int userId)
 		{
@@ -88,28 +107,28 @@ public class UserRestController {
 		
 		//QUESTION c
 		@PostMapping("/question/add")
-		public ResponseEntity<Question> addQuestion(@RequestBody @Valid Question u)
+		public ResponseEntity<Question> addQuestion(@RequestBody @Valid Question q)
 		{
 			
-			Question savedQuestion = questionService.addQuestion(u);
-			
-			return new ResponseEntity<Question>(savedQuestion,HttpStatus.OK);
+			q = restTemplate.postForObject("http://QUESTION-SERVICE/abc-university/result/add", q,Question.class);
+			return new ResponseEntity<Question>(q,HttpStatus.OK);
 			
 		}
 		//QUESTION r
 		@GetMapping("/question/all")
 		public List<Question> getAllQuestions()
 		{
-			List<Question> q = restTemplate.getForObject("http://QUESTION-SERVICE/api/question/all/",List.class);
+			List<Question> q = restTemplate.getForObject("http://QUESTION-SERVICE/abc-university/question/all/",List.class);
 			return q;
 		}
 		
 		//QUESTION u
 		@PutMapping("/question/update")
-		public ResponseEntity<Question> updateQuestion(@RequestBody Question u)
+		public ResponseEntity<Question> updateQuestion(@RequestBody Question q)
 		{
-			Question updateQuestion= questionService.updateQuestions(u);
-			return new ResponseEntity<>(updateQuestion,HttpStatus.OK);
+			Question updatedQuestion = q;
+			restTemplate.put("http://QUESTION-SERVICE/abc-university/result/update", updatedQuestion, Question.class);
+			return new ResponseEntity<Question>(updatedQuestion,HttpStatus.OK);
 		}
 		
 		
@@ -117,7 +136,8 @@ public class UserRestController {
 		@DeleteMapping("/question/delete/{questionId}")
 		public void deleteQuestion(@PathVariable int questionId)
 		{
-			questionService.deleteQuestionByID(questionId);
+			restTemplate.delete("http://QUESTION-SERVICE/abc-university/question/delete/"+questionId,Question.class);
+			
 			
 		}
 		
@@ -126,7 +146,7 @@ public class UserRestController {
 		//RESULT c
 		@PostMapping("/result/add")
 		public Result addResult(@RequestBody @Valid Result r) {
-			Result q = restTemplate.postForObject("http://RESULT-SERVICE/api/result/add", r,Result.class);
+			Result q = restTemplate.postForObject("http://RESULT-SERVICE/abc-university/result/add", r,Result.class);
 			return q;
 		}
 		
@@ -134,7 +154,7 @@ public class UserRestController {
 		@GetMapping("/result/all")
 		public List<Result> getAllResult(){
 			
-			List<Result> r = restTemplate.getForObject("http://RESULT-SERVICE/api/result/all", List.class);
+			List<Result> r = restTemplate.getForObject("http://RESULT-SERVICE/abc-university/result/all", List.class);
 			return r;
 		}
 		
@@ -143,18 +163,11 @@ public class UserRestController {
 		public Result updateResult(@RequestBody Result r) {
 			
 			Result updatedResult = r;
-			restTemplate.put("http://RESULT-SERVICE/api/result/update", updatedResult, Result.class);
+			restTemplate.put("http://RESULT-SERVICE/abc-university/result/update", updatedResult, Result.class);
 			return(r);
 		}
 		
-		//RESULT d
-		@DeleteMapping("/result/delete/{resultId}")
-		public void deleteResult(@PathVariable int resultId){
-			
-			restTemplate.delete("http://RESULT-SERVICE/api/result/delete/"+resultId);
-			System.out.println();
-			
-		}
+		
 		
 		
 		
