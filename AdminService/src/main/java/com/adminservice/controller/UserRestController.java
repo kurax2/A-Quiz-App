@@ -142,13 +142,17 @@ public class UserRestController {
 		@PutMapping("/result/update")
 		public Result updateResult(@RequestBody Result r) {
 			
-			return resultService.updateResult(r);
+			Result updatedResult = r;
+			restTemplate.put("http://RESULT-SERVICE/api/result/update", updatedResult, Result.class);
+			return(r);
 		}
 		
 		//RESULT d
 		@DeleteMapping("/result/delete/{resultId}")
 		public void deleteResult(@PathVariable int resultId){
-			resultService.deleteResultById(resultId);
+			
+			restTemplate.delete("http://RESULT-SERVICE/api/result/delete/"+resultId);
+			System.out.println();
 			
 		}
 		

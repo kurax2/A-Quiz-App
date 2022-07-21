@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ResultRepo extends JpaRepository<Result,Integer>{
 
-	List<Result> getResultByCat(String category);
+	List<Result> getResultByCategory(String category);
 
-	List<Result> getAllQuestionsByStudentID(String id);
+	List<Result> getAllResultsByUserID(String id);
+
+	void deleteResultByUserID(int userId);
 
 }

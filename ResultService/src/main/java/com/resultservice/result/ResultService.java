@@ -39,12 +39,17 @@ public class ResultService {
 
 	public List<Result> getResultByCat(String category) {
 		
-		return resultRepo.getResultByCat(category);
+		return resultRepo.getResultByCategory(category);
 	}
 
-	public List<Result> getAllQuestionsByStudentID(String id) {
+	public List<Result> getAllResultsByUserID(String id) {
 		
-		return resultRepo.getAllQuestionsByStudentID(id);
+		return resultRepo.getAllResultsByUserID(id);
+	}
+
+	public void deleteResultByUserID(int userId) {
+		resultRepo.deleteResultByUserID(userId);
+		
 	}
 	
 	
