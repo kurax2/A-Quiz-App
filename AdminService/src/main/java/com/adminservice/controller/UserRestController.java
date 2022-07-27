@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ import com.adminservice.result.ResultService;
 import com.adminservice.result.Result;
 
 @RestController
+@CrossOrigin(origins= {"http://localhost:8082", "http://localhost:4200"},allowedHeaders = "*")
 @RequestMapping("/abc-university/admin")
 @Validated
 public class UserRestController {
@@ -91,12 +93,12 @@ public class UserRestController {
 		@GetMapping("/user/all")
 		public List<User> getAllUsers(HttpServletRequest request)
 		{
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			List<User> list = new ArrayList<>();
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 			list=userService.getAllUsers();
-			}
+			//}
 			return list;
 		}
 		
