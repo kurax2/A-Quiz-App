@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.loginvalidationservice.security.JWTUtil;
 
 @RestController
+@CrossOrigin(origins= {"http://localhost:8081", "http://localhost:4200"},allowedHeaders = "*")
 @RequestMapping("/abc-university/public")
 public class TokenValidatorController {
 	
@@ -32,8 +34,8 @@ public class TokenValidatorController {
 	@GetMapping("/validate")
 	public boolean validateToken(HttpServletRequest request)
 	{
-		String requestedTokenHeader = request.getHeader("Authorization");
-		String userType= request.getHeader("userType");
+		String requestedTokenHeader = "ncs-"+request.getHeader("Authorization");
+		String userType= "admin"; //request.getHeader("userType")
 		
 		
 		//String requestedTokenHeader = token;

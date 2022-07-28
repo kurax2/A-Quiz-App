@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+
+eureka: 
+ instance:
+  hostname: localhost
+    
+spring:
+  application:
+    name: api-gateway
+  cloud: 
+   gateway: 
+    routes: 
+     - id: ADMIN-SERVICE
+       uri: lb://ADMIN-SERVICE 
+       predicates: 
+        - Path=/abc-university/admin/**
+        
+     - id: LOGIN-VALIDATION-SERVICE
+       uri: lb://LOGIN-VALIDATION-SERVICE
+       predicates: 
+        - Path=/abc-university/public/**
+        
+     - id: QUESTION-SERVICE
+       uri: lb://QUESTION-SERVICE 
+       predicates: 
+          - Path=/abc-university/question/**
+        
+     - id: RESULT-SERVICE
+       uri: lb://RESULT-SERVICE 
+       predicates: 
+          - Path=/abc-university/result/**
+        
+     - id: STUDENT-SERVICE
+       uri: lb://STUDENT-SERVICE 
+       predicates: 
+          - Path=/abc-university/student/**
