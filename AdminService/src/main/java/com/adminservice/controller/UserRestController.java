@@ -79,12 +79,12 @@ public class UserRestController {
 		@PostMapping("/user/add")
 		public ResponseEntity<User> addUser(@RequestBody @Valid User u,HttpServletRequest request)
 		{
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			User savedUser =new User();
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 				savedUser = userService.addUser(u);
-			}
+			//}
 			
 			return new ResponseEntity<User>(savedUser,HttpStatus.OK);
 			
