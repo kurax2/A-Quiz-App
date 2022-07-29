@@ -1,4 +1,4 @@
-package com.studentservice.result;
+package com.studentservice.model;
 
 import java.util.Objects;
 

@@ -20,26 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.studentservice.model.Question;
+import com.studentservice.model.Result;
 
-import com.studentservice.question.Question;
-import com.studentservice.question.QuestionRepo;
-import com.studentservice.question.QuestionService;
-import com.studentservice.result.Result;
-import com.studentservice.result.ResultService;
 
 @RestController
 @RequestMapping("/abc-university/student")
 @Validated
 public class StudentRestController {
-	
-	@Autowired
-	QuestionService questionService;
-	
-	@Autowired
-	QuestionRepo questionRepo;
-	
-	@Autowired
-	ResultService resultService;
 	
 	@Autowired
 	RestTemplate restTemplate;

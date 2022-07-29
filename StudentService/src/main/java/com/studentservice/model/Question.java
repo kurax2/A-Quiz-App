@@ -1,4 +1,4 @@
-package com.studentservice.question;
+package com.studentservice.model;
 
 import java.util.Objects;
 

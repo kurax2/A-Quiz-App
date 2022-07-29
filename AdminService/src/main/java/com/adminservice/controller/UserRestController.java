@@ -149,13 +149,13 @@ public class UserRestController {
 		@GetMapping("/question/all")
 		public List<Question> getAllQuestions(HttpServletRequest request)
 		{	
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			
 			List<Question> q = new ArrayList<>();
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 				q = restTemplate.getForObject("http://QUESTION-SERVICE/abc-university/question/all",List.class);
-			}
+			//}
 			return q;
 		}
 		
@@ -209,13 +209,13 @@ public class UserRestController {
 		@GetMapping("/result/all")
 		public List<Result> getAllResult(HttpServletRequest request){
 			
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			
 			List<Result> r = new ArrayList<>();
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 				r = restTemplate.getForObject("http://RESULT-SERVICE/abc-university/result/all", List.class);
-			}
+			//}
 			return r;
 		}
 		
