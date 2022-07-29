@@ -35,7 +35,7 @@ public class TokenValidatorController {
 	public boolean validateToken(HttpServletRequest request)
 	{
 		String requestedTokenHeader = "ncs-"+request.getHeader("Authorization");
-		String userType= "admin"; //request.getHeader("userType")
+		String userType= request.getHeader("userType"); //'admin'changed
 		
 		
 		//String requestedTokenHeader = token;

@@ -62,7 +62,7 @@ public class UserRestController {
 		
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.set("Authorization", "ncs-"+request.getHeader("Authorization"));
-		headers.set("userType","admin");
+		headers.set("userType","student");
 		//headers.set("Authority", request.getHeader("Authority"));
 
 		HttpEntity<String> entity = new HttpEntity<String>(headers);

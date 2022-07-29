@@ -41,7 +41,7 @@ public class MyAppSecurityConfig extends WebSecurityConfigurerAdapter{
 		 http.
 		 //	csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 		 //	.and().
-		 	csrf().disable().cors().disable().
+		 	csrf().disable().
 			authorizeRequests().
 
 			antMatchers("/abc-university/public/**").permitAll().
@@ -49,6 +49,8 @@ public class MyAppSecurityConfig extends WebSecurityConfigurerAdapter{
 			
 			anyRequest().authenticated().and().
 			sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		 
+		 http.cors();
 		 
 		 
 		 // ----- configure JWTFilters for all next request
