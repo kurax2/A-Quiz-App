@@ -17,6 +17,13 @@ public class UserService  {
 	@Autowired
 	UserRepo userRepo;
 	
+	public User getUsersByID(int i){
+		User savedEntity =  userRepo.getById(i);
+		return savedEntity;
+	}
+		
+	
+	
 	public User addUser(User u) {
 		User savedEntity =  userRepo.save(u);
 		return savedEntity;

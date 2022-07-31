@@ -106,13 +106,13 @@ public class UserRestController {
 		@PutMapping("/user/update")
 		public ResponseEntity<User> updateProject(@RequestBody User u, HttpServletRequest request)
 		{	
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			
-			User updateUser = new User();
+			User updateUser = u;
 			
-			if(tokenValid) {
-			userService.updateUsers(u);
-			}
+			//if(tokenValid) {
+			userService.updateUsers(updateUser);
+			//}
 			
 			return new ResponseEntity<>(updateUser,HttpStatus.OK);
 		}
@@ -122,11 +122,12 @@ public class UserRestController {
 		@DeleteMapping("/user/delete/{userId}")
 		public void deleteUser(@PathVariable int userId, HttpServletRequest request)
 		{
-			boolean tokenValid=validateToken(request);
-			
-			if(tokenValid) {
+			//boolean tokenValid=validateToken(request);
+	
+			//if(tokenValid) {
 				userService.deleteUserByID(userId);
-			}
+				
+			//}
 			
 		}
 		
