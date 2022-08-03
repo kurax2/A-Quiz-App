@@ -165,15 +165,15 @@ public class UserRestController {
 		public ResponseEntity<Question> updateQuestion(@RequestBody Question q,HttpServletRequest request)
 		{
 			
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			
 			Question updatedQuestion = new Question();
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 				
-				restTemplate.put("http://QUESTION-SERVICE/abc-university/result/update", q, Question.class);
+				restTemplate.put("http://QUESTION-SERVICE/abc-university/question/update", q, Question.class);
 				updatedQuestion=q;
-			}
+			//}
 			return new ResponseEntity<Question>(updatedQuestion,HttpStatus.OK);
 		}
 		
@@ -182,11 +182,11 @@ public class UserRestController {
 		@DeleteMapping("/question/delete/{questionId}")
 		public void deleteQuestion(@PathVariable int questionId,HttpServletRequest request)
 		{
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 			restTemplate.delete("http://QUESTION-SERVICE/abc-university/question/delete/"+questionId,Question.class);
-			}
+			//}
 			
 		}
 		
