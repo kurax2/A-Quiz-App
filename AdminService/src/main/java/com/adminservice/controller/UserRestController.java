@@ -137,12 +137,12 @@ public class UserRestController {
 		@PostMapping("/question/add")
 		public ResponseEntity<Question> addQuestion(@RequestBody @Valid Question q, HttpServletRequest request)
 		{
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			Question savedQuestion =new Question();
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 				savedQuestion = restTemplate.postForObject("http://QUESTION-SERVICE/abc-university/question/add", q,Question.class);
-			}
+			//}
 			return new ResponseEntity<Question>(savedQuestion,HttpStatus.OK);
 			
 		}
@@ -195,14 +195,14 @@ public class UserRestController {
 		//RESULT c
 		@PostMapping("/result/add")
 		public Result addResult(@RequestBody @Valid Result r,HttpServletRequest request) {
-			boolean tokenValid=validateToken(request);
+			//boolean tokenValid=validateToken(request);
 			
 			Result savedResult =new Result();
 			
-			if(tokenValid) {
+			//if(tokenValid) {
 				savedResult = restTemplate.postForObject("http://RESULT-SERVICE/abc-university/result/add", r,Result.class);
 				
-			}
+			//}
 			return savedResult;
 		}
 		
